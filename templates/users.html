@@ -1,20 +1,38 @@
-<table border = 1>
-    <thead>
-        <tr>
-        <th>Name</th>
-        <th>Age</th>
-        <th>Email</th>
-        <th>Phone</th>
-        </tr>
-    </thead>
-    {% for user in userDetails %}
-  
-    <tr>
-      <td> {{user[0]}} </td>
-      <td> {{user[1]}} </td>
-      <td> {{user[2]}} </td>
-      <td> {{user[3]}} </td>
-    </tr>
-    {% endfor %}
+<html>
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+</style>
+</head>
+<body>
+
+<h1>Users Details</h1>
+<table>
+  <tr>
+    <th>Full name</th>
+    <th>Age</th>
+    <th>Email</th>
+    <th>Mobile</th>
+    <th>Location</th>
+ </tr>
+  {% for user in usersDetails %}
+ <tr>
+  <td>{{user[0]}}</td>
+  <td>{{user[1]}}</td>
+  <td>{{user[2]}}</td>
+  <td>{{user[3]}}</td>
+  <td>{{user[4]}}</td>
+ </tr>
+  {% endfor %}
 </table>
-  
+</body>
+</html>
