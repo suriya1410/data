@@ -7,19 +7,19 @@ logging.basicConfig(filename='application.log', level=logging.INFO,
     format='%(levelname)s:%(message)s')
 
 app.config['MYSQL_HOST'] = 'database-my.caomyyms75ok.us-east-1.rds.amazonaws.com' 
-app.config['MYSQL_USER'] = 'admin'
-app.config['MYSQL_PASSWORD'] = 'rishi123'
-app.config['MYSQL_DB'] = 'reg'
+app.config['MYSQL_USER'] = 'suriya'
+app.config['MYSQL_PASSWORD'] = 'suriya123'
+app.config['MYSQL_DB'] = 'regform'
 
 db = mysql.connect(
     host = "database-my.caomyyms75ok.us-east-1.rds.amazonaws.com",
-    user = "admin",
-    passwd = "rishi123"
+    user = "suriya",
+    passwd = "suriya123"
 )
 cursor = db.cursor()
 cursor.execute("CREATE DATABASE IF NOT EXISTS reg")
 cursor.execute("USE reg")
-cursor.execute("CREATE TABLE IF NOT EXISTS information (name VARCHAR(150), age INT(3), email VARCHAR(150), phone VARCHAR(150))") 
+cursor.execute("CREATE TABLE IF NOT EXISTS userdata(name VARCHAR(150), age INT(3), email VARCHAR(150), mobile VARCHAR(10), location VARCHAR(100))") 
 
 mysql = MySQL(app)
 
@@ -32,9 +32,10 @@ def index():
         logging.info(name)
         age = details['age']
         email = details['email']
-        phone = details['phone']
+        mobile = details['mobile']
+        location = details['location']
         cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO information(name, age, email, phone) VALUES (%s, %s, %s, %s)", (name, age, email, phone))
+        cur.execute("INSERT INTO userdata(name, age, email, mobile, location) VALUES (%s, %s, %s, %s, %s)", (name, age, email, mobile, location))
         mysql.connection.commit()
         cur.close()
         return 'success'
