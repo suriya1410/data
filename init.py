@@ -2,7 +2,6 @@ from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 import logging
 app = Flask(__name__)
-logging.basicConfig(filename='flask.log', level=logging.INFO,format='%(levelname)s:%(message)s')
 
 app.config['MYSQL_HOST'] = 'database-my.caomyyms75ok.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'suriya'
@@ -19,7 +18,6 @@ def index():
     if request.method == "POST":
         details = request.form
         name = details['name']
-        logging.info(name)
         age = details['age']
         email = details['email']
         mobile = details['mobile']
