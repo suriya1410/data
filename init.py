@@ -1,17 +1,22 @@
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
-import logging
-app = Flask(__name__)
+import mysql.connector as mysql
+db = mysql.connect(
+    host = "database-my.caomyyms75ok.us-east-1.rds.amazonaws.com",
+    user = "suriya",
+    passwd = "suriya123"
+)
+cursor = db.cursor()
+cursor.execute("CREATE DATABASE IF NOT EXISTS regform")
+cursor.close()
 
+app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'database-my.caomyyms75ok.us-east-1.rds.amazonaws.com'
 app.config['MYSQL_USER'] = 'suriya'
 app.config['MYSQL_PASSWORD'] = 'suriya123'
-app.config['MYSQL_DB'] = 'regform'
-
-
+app.config['MYSQL_DB'] ='regform'
 
 mysql = MySQL(app)
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -29,11 +34,9 @@ def index():
         cur.close()
         return 'success'
     return render_template('index.html')
-
-
 @app.route('/users')
 def users():
-    cur = mysql.connection.cursor()
+    cur =mysql.connection.cursor()
     resultValue = cur.execute("SELECT * FROM userdata")
     if resultValue > 0:
         usersDetails = cur.fetchall()
