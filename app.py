@@ -40,6 +40,3 @@ def users():
     if resultValue > 0:
         usersDetails = cur.fetchall()
         return render_template('users.html',usersDetails=usersDetails)
-
-if __name__ == '__main__':
-    app.run(host="0.0.0.0",port=80,debug=True)
