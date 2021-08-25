@@ -1,9 +1,6 @@
 from flask import Flask, render_template, request
 from flask_mysqldb import MySQL
 import mysql.connector as mysql
-import logging
-
-logging.basicConfig(filename='/var/log/flask.log', level=logging.INFO,format='%(levelname)s:%(message)s')
 
 db = mysql.connect(
     host = "database-my.caomyyms75ok.us-east-1.rds.amazonaws.com",
@@ -27,7 +24,6 @@ def index():
     if request.method == "POST":
         details = request.form
         name = details['name']
-        logging.info(name)
         age = details['age']
         email = details['email']
         mobile = details['mobile']
